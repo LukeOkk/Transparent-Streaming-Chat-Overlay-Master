@@ -1,51 +1,43 @@
 /* Twitch popout chat — transparent overlay styling.
-   Applied via webContents.insertCSS() after did-finish-load. */
+   v0.4.2: removed the overly-broad descendant hider that was hiding the
+   message column itself. Now only specific chrome elements are hidden. */
 
-html,
-body,
-[data-a-target="chat-welcome-message"],
-.tw-root--theme-dark,
-.tw-root--theme-light,
+/* Make every common Twitch wrapper transparent so the opacity tint
+   applied later by main.js can show through. */
+html, body,
+.tw-root--theme-dark, .tw-root--theme-light,
 .stream-chat,
-.chat-shell,
-.chat-shell__expanded,
-.chat-room,
-.chat-room__content,
-.chat-list,
-.chat-list--default,
-.chat-list__list-container,
+.chat-shell, .chat-shell__expanded,
+.chat-room, .chat-room__content,
+.chat-list, .chat-list--default, .chat-list__list-container,
 .chat-scrollable-area__message-container,
-.scrollable-area,
-.simplebar-content,
-.video-chat,
-.root-scrollable,
-.persistent-player {
+.scrollable-area, .simplebar-content,
+.video-chat, .root-scrollable, .persistent-player {
   background: transparent !important;
   background-color: transparent !important;
 }
 
-/* Hide input bar, header, viewer list, banners, leaderboards. */
+/* Hide chrome only — no catch-all descendant hider.
+   The previous version had a `:not(.chat-list--default):not(.simplebar-scroll-content)`
+   sibling killer that took out the message column on layouts that wrap the list
+   in extra divs. */
 .chat-input,
 .chat-input__buttons-container,
 .chat-room__viewers-list,
 .chat-room__viewers-list-wrapper,
 .video-chat__header,
 .chat-header,
+.stream-chat-header,
 .community-points-summary,
 .channel-leaderboard,
-.stream-chat-header,
-.chat-room__container > .chat-room__viewers-list,
 .chat-pinned-message,
-.chat-line__message--cheer-amount,
-.chat-line__moderation,
 .consent-banner,
 .gdpr-consent-banner,
-.banner-list-item,
-[data-test-selector="chat-room-component-layout"] > div:not(.chat-list--default):not(.simplebar-scroll-content) {
+.banner-list-item {
   display: none !important;
 }
 
-/* Tighten chat lines for overlay readability. */
+/* Chat line padding + readability shadow. */
 .chat-line__message {
   padding: 4px 12px !important;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
@@ -57,8 +49,10 @@ body,
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
 }
 
-/* Hide scrollbar visuals. */
+/* Hide scrollbar visuals (functionality stays, just not visible). */
 .simplebar-track,
 .simplebar-scrollbar {
   display: none !important;
 }
+
+::-webkit-scrollbar { width: 0 !important; display: none !important; }

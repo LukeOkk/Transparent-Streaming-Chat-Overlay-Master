@@ -1,22 +1,28 @@
 /* Kick popout chat — transparent overlay styling.
-   Applied via webContents.insertCSS() after did-finish-load. */
+   v0.4.2: broadened wrapper selectors to clear Tailwind/utility background
+   classes (bg-surface-*, bg-zinc-*, etc.) that were keeping the chat box
+   opaque on top of the opacity tint. */
 
-html,
-body,
-#__nuxt,
-#__layout,
-.h-screen,
-.chat-container,
-.chatroom,
-.chatroom-list,
-.chat-messages-container,
-.scrollable-area,
-.dark-mode {
+/* Wide transparency on Kick's Nuxt root + likely chat wrappers. */
+html, body,
+#__nuxt, #__layout, #app, main,
+.h-screen, .chatroom, .chat-container, .chat-messages-container,
+.chat-room, .chat-list,
+[class*="chatroom"],
+[class*="chat-wrapper"],
+[class*="chat-container"],
+[class*="chat-messages"],
+[class*="bg-surface"],
+[class*="bg-zinc"],
+[class*="bg-neutral"],
+[class*="bg-gray"],
+[class*="bg-slate"],
+[class*="bg-dark"] {
   background: transparent !important;
   background-color: transparent !important;
 }
 
-/* Hide chrome: input, header, viewer count, action bar. */
+/* Hide chrome: input, header, viewer count, banners. */
 .chat-input-container,
 .chat-input,
 .chat-actions,
@@ -32,23 +38,23 @@ header {
   display: none !important;
 }
 
-/* Tighten chat lines + readability shadow. */
+/* Chat line padding + readability shadow. */
 .chat-entry,
 .chat-message,
-.chat-line {
+.chat-line,
+[class*="chat-entry"],
+[class*="chat-message"] {
   padding: 4px 12px !important;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
   background: transparent !important;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
 }
 
 .chat-entry__username,
 .chat-message__author,
-.chat-author {
+.chat-author,
+[class*="username"],
+[class*="author"] {
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
 }
 
-/* Hide scrollbars. */
-::-webkit-scrollbar {
-  width: 0 !important;
-  display: none !important;
-}
+::-webkit-scrollbar { width: 0 !important; display: none !important; }

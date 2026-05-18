@@ -103,15 +103,37 @@ let opacityCssKey  = null;
 
 function buildOpacityCss(percent) {
   const alpha = Math.max(0, Math.min(100, percent)) / 100;
+  // The tint lives on <html>. Every wrapper that might paint its own opaque
+  // bg on top of <html> gets forced transparent so the tint actually shows.
+  // Includes wildcard matches for Tailwind/utility bg-* classes used by
+  // modern Kick (Nuxt) and YouTube renderers.
   return `
-    html, body,
-    #__nuxt, #__layout, #chat, #contents,
-    .chat-room, .chat-container, .chatroom, .chat-list,
-    .chat-shell, .stream-chat, .chat-messages-container,
-    .scrollable-area, yt-live-chat-app, yt-live-chat-renderer,
-    yt-live-chat-item-list-renderer {
+    html {
       background: rgba(18, 18, 22, ${alpha}) !important;
       background-color: rgba(18, 18, 22, ${alpha}) !important;
+    }
+    body,
+    #__nuxt, #__nuxt > *,
+    #__layout, #__layout > *,
+    #app, #app > *,
+    #chat, #contents, #root, main,
+    .h-screen,
+    .chat-room, .chat-container, .chatroom, .chat-list,
+    .chat-shell, .stream-chat, .chat-messages-container,
+    .scrollable-area, .simplebar-content,
+    yt-live-chat-app, yt-live-chat-renderer, yt-live-chat-item-list-renderer,
+    [class*="chatroom"],
+    [class*="chat-wrapper"],
+    [class*="chat-container"],
+    [class*="chat-messages"],
+    [class*="bg-surface"],
+    [class*="bg-zinc"],
+    [class*="bg-neutral"],
+    [class*="bg-gray"],
+    [class*="bg-slate"],
+    [class*="bg-dark"] {
+      background: transparent !important;
+      background-color: transparent !important;
     }
   `;
 }
