@@ -19,6 +19,29 @@ A cross-platform port of [Transparent Twitch Chat Overlay](https://github.com/ba
 - 🎨 First-run setup window with platform selector
 - ✂️ Per-platform CSS injection: hides chat input, header, banners, scrollbars; adds text shadow for readability
 
+## ⚠️ macOS says the app is "damaged" — what to do
+
+Because the build is **unsigned** (no Apple Developer ID), macOS Gatekeeper attaches a "quarantine" flag to the `.dmg` when you download it from a browser. On launch it may show one of two messages:
+
+- *"… is damaged and can't be opened. You should move it to the Trash."* — confusing but **the app is fine**, the quarantine flag is the problem.
+- *"… cannot be opened because the developer cannot be verified."* — friendlier, with a `Cancel` / `Move to Bin` prompt. Use the fix below in either case.
+
+### Fix (pick one)
+
+**Option A — Right-click → Open** (one-time):
+1. Drag the app to `/Applications`
+2. **Right-click** the app → **Open**
+3. macOS shows a confirmation dialog with an `Open` button → click it
+4. App launches. Subsequent launches work normally.
+
+**Option B — Strip the quarantine flag from Terminal** (most reliable):
+```bash
+xattr -cr "/Applications/Transparent Streaming Chat.app"
+```
+Then double-click as usual. The flag is what triggers the "damaged" warning — removing it makes macOS treat the app like any local build.
+
+If neither works, open a GitHub issue with the exact error text.
+
 ## Run from source
 
 Requires Node.js ≥ 18 (tested with 26) and pnpm.
