@@ -1,0 +1,64 @@
+/* Twitch popout chat — transparent overlay styling.
+   Applied via webContents.insertCSS() after did-finish-load. */
+
+html,
+body,
+[data-a-target="chat-welcome-message"],
+.tw-root--theme-dark,
+.tw-root--theme-light,
+.stream-chat,
+.chat-shell,
+.chat-shell__expanded,
+.chat-room,
+.chat-room__content,
+.chat-list,
+.chat-list--default,
+.chat-list__list-container,
+.chat-scrollable-area__message-container,
+.scrollable-area,
+.simplebar-content,
+.video-chat,
+.root-scrollable,
+.persistent-player {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Hide input bar, header, viewer list, banners, leaderboards. */
+.chat-input,
+.chat-input__buttons-container,
+.chat-room__viewers-list,
+.chat-room__viewers-list-wrapper,
+.video-chat__header,
+.chat-header,
+.community-points-summary,
+.channel-leaderboard,
+.stream-chat-header,
+.chat-room__container > .chat-room__viewers-list,
+.chat-pinned-message,
+.chat-line__message--cheer-amount,
+.chat-line__moderation,
+.consent-banner,
+.gdpr-consent-banner,
+.banner-list-item,
+[data-test-selector="chat-room-component-layout"] > div:not(.chat-list--default):not(.simplebar-scroll-content) {
+  display: none !important;
+}
+
+/* Tighten chat lines for overlay readability. */
+.chat-line__message {
+  padding: 4px 12px !important;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+}
+
+.chat-author__display-name,
+.text-token,
+.chat-line__message-body {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+}
+
+/* Hide scrollbar visuals. */
+.simplebar-track,
+.simplebar-scrollbar {
+  display: none !important;
+}

@@ -1,0 +1,70 @@
+{
+  "name": "transparent-streaming-chat-overlay-master",
+  "version": "0.4.0",
+  "private": false,
+  "description": "Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window.",
+  "main": "app/main.js",
+  "author": "anonymous",
+  "license": "MIT",
+  "homepage": "https://github.com/LukeOkk/Transparent-Streaming-Chat-Overlay-Master",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac dmg",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "io.tsco.transparentstreamingchat",
+    "productName": "Transparent Streaming Chat",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "app/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.video",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "darkModeSupport": true,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "identity": null
+    },
+    "dmg": {
+      "title": "Transparent Streaming Chat ${version}",
+      "writeUpdateInfo": false
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "AudioVideo"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron"
+    ]
+  }
+}

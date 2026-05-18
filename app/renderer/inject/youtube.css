@@ -1,0 +1,52 @@
+/* YouTube live chat iframe — transparent overlay styling.
+   Applied via webContents.insertCSS() after did-finish-load. */
+
+html,
+body,
+ytd-app,
+yt-live-chat-app,
+yt-live-chat-renderer,
+yt-live-chat-item-list-renderer,
+#chat,
+#contents,
+#item-scroller,
+#item-list,
+#items,
+.yt-live-chat-renderer,
+.style-scope {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Hide chrome: header, input, action panel, banners, polls. */
+yt-live-chat-header-renderer,
+#header,
+yt-live-chat-message-input-renderer,
+#input-panel,
+#input,
+yt-live-chat-action-panel-renderer,
+yt-live-chat-banner-manager,
+yt-live-chat-ticker-renderer,
+#ticker,
+.consent-bump,
+yt-live-chat-toast-action-renderer {
+  display: none !important;
+}
+
+/* Chat lines: readable shadow + tighter padding. */
+yt-live-chat-text-message-renderer,
+yt-live-chat-paid-message-renderer,
+yt-live-chat-paid-sticker-renderer,
+yt-live-chat-membership-item-renderer {
+  padding: 4px 12px !important;
+  background: transparent !important;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+}
+
+#author-name,
+#message,
+.yt-live-chat-text-message-renderer {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+}
+
+::-webkit-scrollbar { width: 0 !important; display: none !important; }

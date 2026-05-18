@@ -1,0 +1,11 @@
+/* Custom URL — best-effort transparent overlay styling.
+   Generic selectors only; user can tweak via DevTools (⌘⌥I). */
+
+html,
+body {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Common scrollbar / chrome hide. */
+::-webkit-scrollbar { width: 0 !important; display: none !important; }

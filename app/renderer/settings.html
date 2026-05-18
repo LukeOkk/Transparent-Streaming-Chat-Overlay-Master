@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Settings — Transparent Streaming Chat</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #1e1e22;
+      color: #f5f5f7;
+      font-size: 13px;
+    }
+    h1 { font-size: 17px; margin: 0 0 4px; }
+    h2 { font-size: 13px; color: #aab; margin: 22px 0 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+    p.lead { font-size: 12px; color: #aab; margin: 0 0 6px; }
+    .group { background: #2a2a31; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .row:last-child { margin-bottom: 0; }
+    .row label { flex: 1; font-size: 13px; }
+    .row .desc { color: #889; font-size: 11px; margin-top: 2px; }
+    input[type="range"] {
+      flex: 1.6;
+      accent-color: #6c5ce7;
+      cursor: pointer;
+    }
+    .value-pill {
+      min-width: 50px;
+      text-align: right;
+      color: #aab;
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+    }
+    select {
+      background: #1e1e22;
+      color: #f5f5f7;
+      border: 1px solid #3a3a42;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+    .switch {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      background: #3a3a42;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .switch.on { background: #6c5ce7; }
+    .switch::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: left 0.15s;
+    }
+    .switch.on::after { left: 21px; }
+    button {
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #2a2a31;
+      color: #f5f5f7;
+      border: 1px solid #3a3a42;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #34344a; border-color: #6c5ce7; }
+    .actions { display: flex; gap: 10px; margin-top: 18px; }
+    .actions button { flex: 1; }
+    button.primary { background: #6c5ce7; border-color: #6c5ce7; color: white; }
+    button.primary:hover { background: #7a6bf0; }
+    .saved-flash { color: #4ade80; font-size: 11px; margin-left: 8px; opacity: 0; transition: opacity 0.2s; }
+    .saved-flash.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <h1>Settings ⚙️</h1>
+  <p class="lead">Changes apply live. Close this window when you're done.</p>
+
+  <h2>Appearance</h2>
+  <div class="group">
+    <div class="row">
+      <div>
+        <label for="opacity">Background opacity</label>
+        <div class="desc">Click + drag, or use ←/→ arrow keys. 0 % = fully transparent.</div>
+      </div>
+      <input id="opacity" type="range" min="0" max="100" value="0" step="1" />
+      <span class="value-pill" id="opacityVal">0 %</span>
+    </div>
+  </div>
+
+  <h2>Sound alerts</h2>
+  <div class="group">
+    <div class="row">
+      <label>Enable sound on new chat message</label>
+      <div class="switch" id="soundSwitch"></div>
+    </div>
+    <div class="row">
+      <label for="soundFile">Sound</label>
+      <select id="soundFile">
+        <option value="alert1.wav">Alert 1</option>
+        <option value="alert2.wav">Alert 2</option>
+        <option value="alert3.wav">Alert 3</option>
+        <option value="alert1-low.wav">Alert 1 (Low)</option>
+        <option value="alert2-low.wav">Alert 2 (Low)</option>
+        <option value="alert3-low.wav">Alert 3 (Low)</option>
+      </select>
+      <button id="testSound">▶ Test</button>
+    </div>
+    <div class="row">
+      <div><label for="volume">Volume</label></div>
+      <input id="volume" type="range" min="0" max="100" value="50" step="1" />
+      <span class="value-pill" id="volumeVal">50 %</span>
+    </div>
+    <div class="row">
+      <div>
+        <label for="cooldown">Cooldown between alerts</label>
+        <div class="desc">Avoids spam during chat bursts.</div>
+      </div>
+      <input id="cooldown" type="range" min="0" max="30" value="4" step="1" />
+      <span class="value-pill" id="cooldownVal">4 s</span>
+    </div>
+  </div>
+
+  <h2>Twitch emotes (BTTV / FFZ / 7TV)</h2>
+  <div class="group">
+    <p class="lead" style="margin-bottom: 14px;">Only applied on Twitch popout — other platforms ignore these.</p>
+    <div class="row">
+      <label>BetterTTV</label>
+      <div class="switch" id="bttvSwitch"></div>
+    </div>
+    <div class="row">
+      <label>FrankerFaceZ</label>
+      <div class="switch" id="ffzSwitch"></div>
+    </div>
+    <div class="row">
+      <label>7TV</label>
+      <div class="switch" id="sevenSwitch"></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="closeBtn">Close</button>
+    <button class="primary" id="reloadBtn">Apply &amp; Reload Overlay</button>
+    <span class="saved-flash" id="savedFlash">Saved ✓</span>
+  </div>
+
+  <script>
+    const el = (id) => document.getElementById(id);
+
+    function bindSwitch(id, getter, setter) {
+      const sw = el(id);
+      const update = () => sw.classList.toggle('on', !!getter());
+      sw.addEventListener('click', async () => {
+        const next = !getter();
+        await setter(next);
+        update();
+      });
+      return update;
+    }
+
+    let state = {};
+    const flash = el('savedFlash');
+    function showSaved() {
+      flash.classList.add('show');
+      clearTimeout(showSaved.t);
+      showSaved.t = setTimeout(() => flash.classList.remove('show'), 1200);
+    }
+
+    async function pullState() {
+      state = await window.tscoSettings.get();
+      el('opacity').value     = state.opacity;
+      el('opacityVal').textContent = state.opacity + ' %';
+      el('volume').value      = Math.round((state.soundVolume || 0.5) * 100);
+      el('volumeVal').textContent  = Math.round((state.soundVolume || 0.5) * 100) + ' %';
+      el('cooldown').value    = Math.round((state.soundCooldownMs || 4000) / 1000);
+      el('cooldownVal').textContent = Math.round((state.soundCooldownMs || 4000) / 1000) + ' s';
+      el('soundFile').value   = state.soundFile || 'alert1.wav';
+      updateAllSwitches();
+    }
+
+    const updBttv  = bindSwitch('bttvSwitch',  () => state.bttv,         async (v) => { state.bttv = v;  await save(); });
+    const updFfz   = bindSwitch('ffzSwitch',   () => state.ffz,          async (v) => { state.ffz = v;   await save(); });
+    const updSeven = bindSwitch('sevenSwitch', () => state.seven,        async (v) => { state.seven = v; await save(); });
+    const updSnd   = bindSwitch('soundSwitch', () => state.soundEnabled, async (v) => { state.soundEnabled = v; await save(); });
+    function updateAllSwitches() { updBttv(); updFfz(); updSeven(); updSnd(); }
+
+    async function save() {
+      await window.tscoSettings.set(state);
+      showSaved();
+    }
+
+    el('opacity').addEventListener('input', async (e) => {
+      state.opacity = parseInt(e.target.value, 10);
+      el('opacityVal').textContent = state.opacity + ' %';
+      await save();
+    });
+
+    el('volume').addEventListener('input', async (e) => {
+      state.soundVolume = parseInt(e.target.value, 10) / 100;
+      el('volumeVal').textContent = e.target.value + ' %';
+      await save();
+    });
+
+    el('cooldown').addEventListener('input', async (e) => {
+      state.soundCooldownMs = parseInt(e.target.value, 10) * 1000;
+      el('cooldownVal').textContent = e.target.value + ' s';
+      await save();
+    });
+
+    el('soundFile').addEventListener('change', async (e) => {
+      state.soundFile = e.target.value;
+      await save();
+    });
+
+    el('testSound').addEventListener('click', () => {
+      window.tscoSettings.testSound(el('soundFile').value, parseInt(el('volume').value, 10) / 100);
+    });
+
+    el('closeBtn').addEventListener('click', () => window.close());
+    el('reloadBtn').addEventListener('click', async () => {
+      await save();
+      await window.tscoSettings.reloadOverlay();
+    });
+
+    pullState();
+  </script>
+</body>
+</html>

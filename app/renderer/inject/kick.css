@@ -1,0 +1,54 @@
+/* Kick popout chat — transparent overlay styling.
+   Applied via webContents.insertCSS() after did-finish-load. */
+
+html,
+body,
+#__nuxt,
+#__layout,
+.h-screen,
+.chat-container,
+.chatroom,
+.chatroom-list,
+.chat-messages-container,
+.scrollable-area,
+.dark-mode {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Hide chrome: input, header, viewer count, action bar. */
+.chat-input-container,
+.chat-input,
+.chat-actions,
+.chatroom-header,
+.chat-header,
+.viewer-count,
+.banner,
+.cookie-banner,
+.consent-banner,
+.poll-banner,
+nav,
+header {
+  display: none !important;
+}
+
+/* Tighten chat lines + readability shadow. */
+.chat-entry,
+.chat-message,
+.chat-line {
+  padding: 4px 12px !important;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+  background: transparent !important;
+}
+
+.chat-entry__username,
+.chat-message__author,
+.chat-author {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+}
+
+/* Hide scrollbars. */
+::-webkit-scrollbar {
+  width: 0 !important;
+  display: none !important;
+}
