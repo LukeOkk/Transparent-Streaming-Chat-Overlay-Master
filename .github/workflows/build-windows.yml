@@ -8,6 +8,9 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write   # allow pushing the debug log branch
+
 jobs:
   build:
     runs-on: windows-latest
@@ -22,37 +25,32 @@ jobs:
         run: npm install
 
       - name: Build NSIS installer
+        id: build
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false
           DEBUG: electron-builder
         run: |
-          # Run electron-builder, capturing ALL output to a file (and the
-          # console). --publish never stops it from trying to push a GitHub
-          # release just because GH_TOKEN + a tag are present.
           npx electron-builder --win nsis --publish never *> build-output.log
-          $code = $LASTEXITCODE
+          "exit_code=$LASTEXITCODE" | Out-File -FilePath build-exit.txt -Encoding ascii
           Get-Content build-output.log
-          if ($code -ne 0) {
-            # Surface the tail of the real error as ::error:: annotations,
-            # which are readable via the public check-runs annotations API.
-            Get-Content build-output.log -Tail 30 | ForEach-Object {
-              $line = ($_ -replace '::', ' : ')
-              if ($line.Trim().Length -gt 0) { Write-Output "::error::$line" }
-            }
-            exit $code
-          }
+          exit $LASTEXITCODE
 
-      - name: Upload electron-builder output log (always)
+      - name: Publish build log to ci-debug branch (always)
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output-log
-          path: build-output.log
-          if-no-files-found: ignore
+        shell: pwsh
+        run: |
+          if (-not (Test-Path build-output.log)) { "no log produced" | Out-File build-output.log }
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git switch --orphan ci-debug
+          git add -f build-output.log build-exit.txt
+          git commit -m "ci: windows build log"
+          git push -f origin ci-debug
 
       - name: Upload installer artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
