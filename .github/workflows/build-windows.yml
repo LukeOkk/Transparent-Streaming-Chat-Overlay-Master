@@ -2,14 +2,9 @@ name: Build Windows installer
 
 on:
   push:
-    branches:
-      - main      # temporary: build on every push to main while debugging CI
     tags:
       - 'v*'
   workflow_dispatch:
-
-permissions:
-  contents: write   # allow pushing the debug log branch
 
 jobs:
   build:
@@ -25,32 +20,16 @@ jobs:
         run: npm install
 
       - name: Build NSIS installer
-        id: build
-        shell: pwsh
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # No code-signing certificate in CI — don't let electron-builder
+          # try to auto-discover one (would fail on the clean runner).
           CSC_IDENTITY_AUTO_DISCOVERY: false
-          DEBUG: electron-builder
-        run: |
-          npx electron-builder --win nsis --publish never *> build-output.log
-          "exit_code=$LASTEXITCODE" | Out-File -FilePath build-exit.txt -Encoding ascii
-          Get-Content build-output.log
-          exit $LASTEXITCODE
-
-      - name: Publish build log to ci-debug branch (always)
-        if: always()
-        shell: pwsh
-        run: |
-          if (-not (Test-Path build-output.log)) { "no log produced" | Out-File build-output.log }
-          git config user.name "ci-bot"
-          git config user.email "ci-bot@users.noreply.github.com"
-          git switch --orphan ci-debug
-          git add -f build-output.log build-exit.txt
-          git commit -m "ci: windows build log"
-          git push -f origin ci-debug
+        # --publish never stops electron-builder from trying to create a
+        # GitHub Release on tag builds (that auto-publish was the original
+        # cause of the build-step failure).
+        run: npx electron-builder --win nsis --publish never
 
       - name: Upload installer artifact
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
