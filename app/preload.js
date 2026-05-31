@@ -14,6 +14,15 @@ contextBridge.exposeInMainWorld('tscoSettings', {
   testSound: (file, volume) => ipcRenderer.invoke('settings:test-sound', file, volume)
 });
 
+// ── Exposed to the injected overlay control bar (Windows / Linux) ──────────
+contextBridge.exposeInMainWorld('tscoOverlay', {
+  openSettings:  () => ipcRenderer.invoke('overlay:open-settings'),
+  reload:        () => ipcRenderer.invoke('overlay:reload'),
+  changeChannel: () => ipcRenderer.invoke('overlay:change-channel'),
+  minimize:      () => ipcRenderer.invoke('overlay:minimize'),
+  close:         () => ipcRenderer.invoke('overlay:close')
+});
+
 // ── Exposed to popout pages (Twitch / Kick / YouTube / Custom) ────────────
 contextBridge.exposeInMainWorld('tsco', {
   playSound: (name, volume) => {

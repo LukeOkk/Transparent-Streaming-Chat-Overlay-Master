@@ -179,6 +179,14 @@ function bootstrapInjects(win, cfg) {
       })};`);
       const soundScript = fs.readFileSync(path.join(__dirname, 'renderer', 'inject', 'sound-alert.js'), 'utf8');
       await wc.executeJavaScript(soundScript);
+      // 5. Overlay control bar — drag-to-move + Settings/Reload/Minimize.
+      //    Only on Windows/Linux: the frameless window has no title bar there,
+      //    so without this the window can't be moved and Settings is unreachable.
+      //    macOS keeps its global menu bar and draggable title region.
+      if (process.platform !== 'darwin') {
+        const barScript = fs.readFileSync(path.join(__dirname, 'renderer', 'inject', 'overlay-bar.js'), 'utf8');
+        await wc.executeJavaScript(barScript);
+      }
     } catch (e) {
       console.error('inject failed:', e);
     }
@@ -429,6 +437,19 @@ ipcMain.handle('settings:test-sound', async (_e, file, volume) => {
   } catch (e) {
     return { ok: false, error: e.message };
   }
+});
+
+// ── IPC from the injected overlay control bar (Windows / Linux) ────────────
+ipcMain.handle('overlay:open-settings',  () => { openSettings();  return { ok: true }; });
+ipcMain.handle('overlay:reload',         () => { reloadOverlay(); return { ok: true }; });
+ipcMain.handle('overlay:change-channel', () => { changeChannel(); return { ok: true }; });
+ipcMain.handle('overlay:minimize', () => {
+  if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.minimize();
+  return { ok: true };
+});
+ipcMain.handle('overlay:close', () => {
+  if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.hide();
+  return { ok: true };
 });
 
 app.whenReady().then(() => {
