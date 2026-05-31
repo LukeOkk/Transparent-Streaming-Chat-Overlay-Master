@@ -20,7 +20,25 @@ jobs:
         run: npm install
 
       - name: Build NSIS installer
+        env:
+          # Lets electron-builder download its packaging binaries (nsis,
+          # winCodeSign) from GitHub with an authenticated, higher rate limit —
+          # anonymous downloads are the most common cause of a deterministic
+          # failure on a clean Windows runner.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # No code-signing certificate in CI; don't let electron-builder try.
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+          # Verbose electron-builder output so failures are diagnosable.
+          DEBUG: electron-builder
         run: npm run dist:win
+
+      - name: Upload electron-builder debug log (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: builder-debug-log
+          path: dist/builder-debug.yml
+          if-no-files-found: ignore
 
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
