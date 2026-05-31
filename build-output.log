@@ -1,0 +1,402 @@
+  • electron-builder  version=25.1.8 os=10.0.26100
+  • loaded configuration  file=package.json ("build" field)
+  • effective config  config=directories:
+  output: dist
+  buildResources: build
+appId: io.tsco.transparentstreamingchat
+productName: Transparent Streaming Chat
+files:
+  - filter:
+      - app/**/*
+      - package.json
+afterPack: ./build/afterPack.js
+mac:
+  category: public.app-category.video
+  target:
+    - target: dmg
+      arch:
+        - arm64
+  icon: build/icon.png
+  darkModeSupport: true
+  hardenedRuntime: false
+  gatekeeperAssess: false
+  identity: null
+  type: distribution
+dmg:
+  title: Transparent Streaming Chat ${version}
+  writeUpdateInfo: false
+linux:
+  target:
+    - AppImage
+  category: AudioVideo
+win:
+  target:
+    - nsis
+  icon: build/icon.png
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Transparent Streaming Chat
+
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe node-dep-tree --dir D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master
+  • exited          command=app-builder.exe code=0 pid=9104 out=[]
+  • executing @electron/rebuild  electronVersion=33.4.11 arch=x64 buildFromSource=false appDir=./
+  • installing native dependencies  arch=x64
+  • completed installing native dependencies
+  • packaging       platform=win32 arch=x64 electron=33.4.11 appOutDir=dist\win-unpacked
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe unpack-electron --configuration [{"platform":"win32","arch":"x64","version":"33.4.11"}] --output D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\win-unpacked --distMacOsAppName Electron.app
+  • map async       taskCount=2
+  • map async       taskCount=1
+  • computing effective URL  initialUrl=https://github.com/electron/electron/releases/download/v33.4.11/electron-v33.4.11-win32-x64.zip
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/9384267/4877801e-7e4a-40ac-bf15-02495e98317c?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-05-31T03%3A03%3A46Z&rscd=attachment%3B+filename%3Delectron-v33.4.11-win32-x64.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-05-31T02%3A03%3A17Z&ske=2026-05-31T03%3A03%3A46Z&sks=b&skv=2018-11-09&sig=cxx8FCJIACex7jYnC861W5OkRm0RW0JtDGTfQs3U0jg%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4MDE5NzkzNSwibmJmIjoxNzgwMTk0MzM1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.UOc2no0uyg-45Zj-0mkATTDt2_mRFhVJ4oRqyTVwjCE&response-content-disposition=attachment%3B%20filename%3Delectron-v33.4.11-win32-x64.zip&response-content-type=application%2Foctet-stream
+  • downloading     url=https://github.com/electron/electron/releases/download/v33.4.11/electron-v33.4.11-win32-x64.zip length=115028145 contentType=application/octet-stream
+  • downloading     url=https://github.com/electron/electron/releases/download/v33.4.11/electron-v33.4.11-win32-x64.zip size=115 MB parts=8
+  • map async       taskCount=8
+  • download part   range=bytes=100649626-115028144 index=7
+  • download part   range=bytes=57514072-71892589 index=4
+  • download part   range=bytes=28757036-43135553 index=2
+  • download part   range=bytes=0-14378517 index=0
+  • download part   range=bytes=71892590-86271107 index=5
+  • download part   range=bytes=86271108-100649625 index=6
+  • download part   range=bytes=43135554-57514071 index=3
+  • download part   range=bytes=14378518-28757035 index=1
+  • downloaded      url=https://github.com/electron/electron/releases/download/v33.4.11/electron-v33.4.11-win32-x64.zip duration=449ms
+  • map async       taskCount=73
+  • exited          command=app-builder.exe code=0 pid=8544
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe node-dep-tree --dir D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master --flatten
+  • exited          command=app-builder.exe code=0 pid=3660 out=[]
+  • updating asar integrity executable resource  executablePath=dist\win-unpacked\Transparent Streaming Chat.exe
+  • detect github as publish provider
+  • calling getInfo  reason=owner or project is not specified explicitly provider=github owner=undefined project=undefined
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe icon --format ico --root D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build --root D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master --out D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico --input build/icon.png
+  • path doesn't exist  path=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build\build\icon.png
+  • path resolved   path=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build\icon.png outputFormat=ico
+  • exited          command=app-builder.exe code=0 pid=5436 out={"icons":[{"file":"D:\\a\\Transparent-Streaming-Chat-Overlay-Master\\Transparent-Streaming-Chat-Overlay-Master\\dist\\.icon-ico\\icon.ico","size":256}],"isFallback":false}
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe rcedit --args ["D:\\a\\Transparent-Streaming-Chat-Overlay-Master\\Transparent-Streaming-Chat-Overlay-Master\\dist\\win-unpacked\\Transparent Streaming Chat.exe","--set-version-string","FileDescription","Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window.","--set-version-string","ProductName","Transparent Streaming Chat","--set-version-string","LegalCopyright","Copyright © 2026 anonymous","--set-file-version","0.4.3","--set-product-version","0.4.3.0","--set-version-string","InternalName","Transparent Streaming Chat","--set-version-string","OriginalFilename","","--set-version-string","CompanyName","anonymous","--set-icon","D:\\a\\Transparent-Streaming-Chat-Overlay-Master\\Transparent-Streaming-Chat-Overlay-Master\\dist\\.icon-ico\\icon.ico"]
+  • computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/f73f2200-5d53-11ea-8264-ddd345f11ee4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-05-31T03%3A07%3A28Z&rscd=attachment%3B+filename%3DwinCodeSign-2.6.0.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-05-31T02%3A07%3A02Z&ske=2026-05-31T03%3A07%3A28Z&sks=b&skv=2018-11-09&sig=Waq18yEnr3DJy%2BDhv%2BNylajEuXuKvCpC21QWehWNHCk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4MDE5NDU1MiwibmJmIjoxNzgwMTk0MjUyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.EHSMblhFWagDI8kr1vC8zdckvmJTwbM7hWQ2T8_xbDo&response-content-disposition=attachment%3B%20filename%3DwinCodeSign-2.6.0.7z&response-content-type=application%2Foctet-stream
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z length=5635384 contentType=application/octet-stream
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z size=5.6 MB parts=1
+  • map async       taskCount=1
+  • download part   range=bytes=0-5635383 index=0
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z duration=126ms
+  • execute command  command='D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'C:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign\015281227.7z' '-oC:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign\015281227'
+                     workingDirectory=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign
+  • command executed  executable=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe
+                      out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 5635384 bytes (5504 KiB)
+    
+    Extracting archive: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign\015281227.7z
+    --
+    Path = C:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign\015281227.7z
+    Type = 7z
+    Physical Size = 5635384
+    Headers Size = 1492
+    Method = LZMA2:24m LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    Everything is Ok
+    
+    Folders: 13
+    Files: 83
+    Size:       24762883
+    Compressed: 5635384
+    
+  • execute command  command='C:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign\winCodeSign-2.6.0\rcedit-x64.exe' 'D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\win-unpacked\Transparent Streaming Chat.exe' --set-version-string FileDescription 'Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window.' --set-version-string ProductName 'Transparent Streaming Chat' --set-version-string LegalCopyright 'Copyright © 2026 anonymous' --set-file-version 0.4.3 --set-product-version 0.4.3.0 --set-version-string InternalName 'Transparent Streaming Chat' --set-version-string OriginalFilename '' --set-version-string CompanyName anonymous --set-icon 'D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico'
+                     workingDirectory=
+  • command executed  executable=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\winCodeSign\winCodeSign-2.6.0\rcedit-x64.exe
+  • exited          command=app-builder.exe code=0 pid=7028
+  • signing with signtool.exe  path=dist\win-unpacked\Transparent Streaming Chat.exe
+  • no signing info identified, signing is skipped  signHook=false cscInfo=null
+wine&sign: 0s 876ms
+  • building        target=nsis file=dist\Transparent Streaming Chat Setup 0.4.3.exe archs=x64 oneClick=false perMachine=false
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe download-artifact --name nsis-3.0.4.1 --url https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z --sha512 VKMiizYdmNdJOWpRGz4trl4lD++BvYP2irAXpMilheUP0pc93iKlWAoP843Vlraj8YG19CVn0j+dCo/hURz9+Q==
+  • computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/10518a80-10f6-11ea-8d2f-403bab81b4cd?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-05-31T03%3A00%3A30Z&rscd=attachment%3B+filename%3Dnsis-3.0.4.1.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-05-31T02%3A00%3A04Z&ske=2026-05-31T03%3A00%3A30Z&sks=b&skv=2018-11-09&sig=%2B0D9Q3Vyfwi76ZSTelyXXyA4eaL58pn8vlykl86iGf8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4MDE5NDU2OCwibmJmIjoxNzgwMTk0MjY4LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.aeH9kLbO5OcNlhugc6X8hub4i7hYBvAJv65BT7Eppkc&response-content-disposition=attachment%3B%20filename%3Dnsis-3.0.4.1.7z&response-content-type=application%2Foctet-stream
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z length=1287512 contentType=application/octet-stream
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z size=1.3 MB parts=1
+  • map async       taskCount=1
+  • download part   range=bytes=0-1287511 index=0
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z duration=109ms
+  • execute command  command='D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\190172231.7z' '-oC:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\190172231'
+                     workingDirectory=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis
+  • command executed  executable=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe
+                      out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 1287512 bytes (1258 KiB)
+    
+    Extracting archive: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\190172231.7z
+    --
+    Path = C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\190172231.7z
+    Type = 7z
+    Physical Size = 1287512
+    Headers Size = 4285
+    Method = LZMA2:23 LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    Everything is Ok
+    
+    Folders: 23
+    Files: 343
+    Size:       7280179
+    Compressed: 1287512
+    
+  • exited          command=app-builder.exe code=0 pid=6640 out=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1
+  • signing with signtool.exe  path=dist\win-unpacked\resources\elevate.exe
+  • no signing info identified, signing is skipped  signHook=false cscInfo=null
+  • executing       file=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe args=a -bd -mx=9 -md=1m -mtc=off -ms=off -mtm=off -mta=off D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z . -xr!*.avi -xr!*.mov -xr!*.m4v -xr!*.mp4 -xr!*.m4p -xr!*.qt -xr!*.mkv -xr!*.webm -xr!*.vmdk cwd=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\win-unpacked
+nsis package, x64: 26s 623ms
+  • executing       file=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe args=l D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z
+  • executed        file=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe stdout=
+7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+                      Scanning the drive for archives:
+1 file, 81803344 bytes (79 MiB)
+                      Listing archive: D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z
+                      --
+Path = D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z
+Type = 7z
+Physical Size = 81803344
+Headers Size = 1472
+Method = LZMA2:20 LZMA:20 BCJ2
+Solid = -
+Blocks = 74
+                         Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+                    D....            0            0  locales
+                    D....            0            0  resources
+                    ....A       151599       140724  chrome_100_percent.pak
+                    ....A       228644       214257  chrome_200_percent.pak
+                    ....A     10468208      3447093  icudtl.dat
+                    ....A         1096          690  LICENSE.electron.txt
+                    ....A      9170910       240578  LICENSES.chromium.html
+                    ....A       533447       129881  locales\af.pak
+                    ....A       860998       146625  locales\am.pak
+                    ....A       943105       150344  locales\ar.pak
+                    ....A       982837       145839  locales\bg.pak
+                    ....A      1267377       152065  locales\bn.pak
+                    ....A       598914       133101  locales\ca.pak
+                    ....A       617061       143336  locales\cs.pak
+                    ....A       558874       130452  locales\da.pak
+                    ....A       596668       137452  locales\de.pak
+                    ....A      1076226       153636  locales\el.pak
+                    ....A       485870       120287  locales\en-GB.pak
+                    ....A       490357       120649  locales\en-US.pak
+                    ....A       589661       132546  locales\es-419.pak
+                    ....A       589252       132210  locales\es.pak
+                    ....A       536353       133681  locales\et.pak
+                    ....A       875804       141993  locales\fa.pak
+                    ....A       547254       133268  locales\fi.pak
+                    ....A       618873       132838  locales\fil.pak
+                    ....A       637402       137421  locales\fr.pak
+                    ....A      1247883       151106  locales\gu.pak
+                    ....A       769514       139229  locales\he.pak
+                    ....A      1316123       155994  locales\hi.pak
+                    ....A       595033       138749  locales\hr.pak
+                    ....A       640919       145109  locales\hu.pak
+                    ....A       529377       120948  locales\id.pak
+                    ....A       581039       131086  locales\it.pak
+                    ....A       708056       126970  locales\ja.pak
+                    ....A      1424041       152928  locales\kn.pak
+                    ....A       599155       123303  locales\ko.pak
+                    ....A       644271       141236  locales\lt.pak
+                    ....A       643341       142413  locales\lv.pak
+                    ....A      1481389       156798  locales\ml.pak
+                    ....A      1222183       147781  locales\mr.pak
+                    ....A       554828       123091  locales\ms.pak
+                    ....A       537826       127359  locales\nb.pak
+                    ....A       556192       130697  locales\nl.pak
+                    ....A       619358       143882  locales\pl.pak
+                    ....A       581605       132408  locales\pt-BR.pak
+                    ....A       585543       131248  locales\pt-PT.pak
+                    ....A       606334       135008  locales\ro.pak
+                    ....A       996183       153123  locales\ru.pak
+                    ....A       626642       146368  locales\sk.pak
+                    ....A       601760       138759  locales\sl.pak
+                    ....A       924879       146016  locales\sr.pak
+                    ....A       541011       127384  locales\sv.pak
+                    ....A       570564       130802  locales\sw.pak
+                    ....A      1468553       152392  locales\ta.pak
+                    ....A      1359284       152745  locales\te.pak
+                    ....A      1142647       134087  locales\th.pak
+                    ....A       581314       132073  locales\tr.pak
+                    ....A       996327       151219  locales\uk.pak
+                    ....A       870802       142319  locales\ur.pak
+                    ....A       689431       131844  locales\vi.pak
+                    ....A       496347       122726  locales\zh-CN.pak
+                    ....A       491043       121131  locales\zh-TW.pak
+                    ....A          151          121  resources\app-update.yml
+                    ....A      1126006       616678  resources\app.asar
+                    ....A      5756465      5700304  resources.pak
+                    ....A       316538        55327  snapshot_blob.bin
+                    ....A       687473       120747  v8_context_snapshot.bin
+                    ....A          106           96  vk_swiftshader_icd.json
+                    ....A      4916728      1561984  d3dcompiler_47.dll
+                    ....A      2927616       904574  ffmpeg.dll
+                    ....A       493056       171230  libEGL.dll
+                    ....A      8417792      2267894  libGLESv2.dll
+                    ....A       107520        49095  resources\elevate.exe
+                    ....A    188833280     57150569  Transparent Streaming Chat.exe
+                    ....A      5533184      1312617  vk_swiftshader.dll
+                    ....A       894976       259339  vulkan-1.dll
+------------------- ----- ------------ ------------  ------------------------
+                             282238478     81801872  74 files, 2 folders
+
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe download-artifact --name nsis-resources-3.4.1 --url https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z --sha512 Dqd6g+2buwwvoG1Vyf6BHR1b+25QMmPcwZx40atOT57gH27rkjOei1L0JTldxZu4NFoEmW4kJgZ3DlSWVON3+Q==
+  • computing effective URL  initialUrl=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z
+                             currentUrl=https://release-assets.githubusercontent.com/github-production-release-asset/65527128/64ac4a00-a87a-11e9-901b-f221c4fd0776?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-05-31T03%3A21%3A27Z&rscd=attachment%3B+filename%3Dnsis-resources-3.4.1.7z&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-05-31T02%3A20%3A52Z&ske=2026-05-31T03%3A21%3A27Z&sks=b&skv=2018-11-09&sig=YHDlGAbOQ%2FDV89wZ0SwQTWDvkj5tpxKWskXAKtAZC9A%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4MDE5NDY2NCwibmJmIjoxNzgwMTk0MzY0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.YTZpH3jv5BpEUbkbr42mmFvN9scAuwOCElD67IpD6sw&response-content-disposition=attachment%3B%20filename%3Dnsis-resources-3.4.1.7z&response-content-type=application%2Foctet-stream
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z length=730800 contentType=application/octet-stream
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z size=731 kB parts=1
+  • map async       taskCount=1
+  • download part   range=bytes=0-730799 index=0
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z duration=117ms
+  • execute command  command='D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe' x -snld -bd 'C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\931017831.7z' '-oC:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\931017831'
+                     workingDirectory=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis
+  • command executed  executable=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\7zip-bin\win\x64\7za.exe
+                      out=
+    7-Zip (a) 21.07 (x64) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+    
+    Scanning the drive for archives:
+    1 file, 730800 bytes (714 KiB)
+    
+    Extracting archive: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\931017831.7z
+    --
+    Path = C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\931017831.7z
+    Type = 7z
+    Physical Size = 730800
+    Headers Size = 650
+    Method = LZMA2:3m LZMA:20 BCJ2
+    Solid = +
+    Blocks = 2
+    
+    Everything is Ok
+    
+    Folders: 5
+    Files: 22
+    Size:       2998788
+    Compressed: 730800
+    
+  • exited          command=app-builder.exe code=0 pid=1296 out=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-resources-3.4.1
+  • spawning        command=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe -WX -INPUTCHARSET UTF8 -DAPP_ID=io.tsco.transparentstreamingchat -DAPP_GUID=5bdd6077-55d4-5cf8-9b2f-e3c45061e058 -DUNINSTALL_APP_KEY=5bdd6077-55d4-5cf8-9b2f-e3c45061e058 -DPRODUCT_NAME=Transparent Streaming Chat -DPRODUCT_FILENAME=Transparent Streaming Chat -DAPP_FILENAME=Transparent Streaming Chat -DAPP_DESCRIPTION=Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window. -DVERSION=0.4.3 -DPROJECT_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master -DBUILD_RESOURCES_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build -DAPP_PACKAGE_NAME=transparent-streaming-chat-overlay-master -DMUI_ICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico -DMUI_UNICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico -DAPP_64=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z -DAPP_64_NAME=transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z -DAPP_64_HASH=AF9D34EA601EDA47F98BB4C539CE52727FC9073FCBC5B55B482E2D402DB2ADB77736FECAA96E03A0BC3E347C2B81FC4F74AA9DF910770D3A0597DAAD622BEB32 -DAPP_64_UNPACKED_SIZE=275624 -DCOMPANY_NAME=anonymous -DAPP_INSTALLER_STORE_FILE=transparent-streaming-chat-overlay-master-updater\installer.exe -DCOMPRESSION_METHOD=7z -DMULTIUSER_INSTALLMODE_ALLOW_ELEVATION -DINSTALL_MODE_PER_ALL_USERS_REQUIRED -DallowToChangeInstallationDirectory -DSHORTCUT_NAME=Transparent Streaming Chat -DUNINSTALL_DISPLAY_NAME=Transparent Streaming Chat 0.4.3 -DMUI_WELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp -DMUI_UNWELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp -DESTIMATED_SIZE=275624 -DCOMPRESS=auto -DBUILD_UNINSTALLER -DUNINSTALLER_OUT_FILE=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\__uninstaller-nsis-transparent-streaming-chat-overlay-master.exe -XOutFile "D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe" -XVIProductVersion 0.4.3.0 -XVIAddVersionKey /LANG=1033 ProductName "Transparent Streaming Chat" -XVIAddVersionKey /LANG=1033 ProductVersion "0.4.3" -XVIAddVersionKey /LANG=1033 LegalCopyright "Copyright © 2026 anonymous" -XVIAddVersionKey /LANG=1033 FileDescription "Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window." -XVIAddVersionKey /LANG=1033 FileVersion "0.4.3" -XVIAddVersionKey /LANG=1033 CompanyName "anonymous" -XUnicode true -XSetCompressor zlib - cwd=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-lib\templates\nsis
+Command line defined: "APP_ID=io.tsco.transparentstreamingchat"
+Command line defined: "APP_GUID=5bdd6077-55d4-5cf8-9b2f-e3c45061e058"
+Command line defined: "UNINSTALL_APP_KEY=5bdd6077-55d4-5cf8-9b2f-e3c45061e058"
+Command line defined: "PRODUCT_NAME=Transparent Streaming Chat"
+Command line defined: "PRODUCT_FILENAME=Transparent Streaming Chat"
+Command line defined: "APP_FILENAME=Transparent Streaming Chat"
+Command line defined: "APP_DESCRIPTION=Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window."
+Command line defined: "VERSION=0.4.3"
+Command line defined: "PROJECT_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master"
+Command line defined: "BUILD_RESOURCES_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build"
+Command line defined: "APP_PACKAGE_NAME=transparent-streaming-chat-overlay-master"
+Command line defined: "MUI_ICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico"
+Command line defined: "MUI_UNICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico"
+Command line defined: "APP_64=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z"
+Command line defined: "APP_64_NAME=transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z"
+Command line defined: "APP_64_HASH=AF9D34EA601EDA47F98BB4C539CE52727FC9073FCBC5B55B482E2D402DB2ADB77736FECAA96E03A0BC3E347C2B81FC4F74AA9DF910770D3A0597DAAD622BEB32"
+Command line defined: "APP_64_UNPACKED_SIZE=275624"
+Command line defined: "COMPANY_NAME=anonymous"
+Command line defined: "APP_INSTALLER_STORE_FILE=transparent-streaming-chat-overlay-master-updater\installer.exe"
+Command line defined: "COMPRESSION_METHOD=7z"
+Command line defined: "MULTIUSER_INSTALLMODE_ALLOW_ELEVATION"
+Command line defined: "INSTALL_MODE_PER_ALL_USERS_REQUIRED"
+Command line defined: "allowToChangeInstallationDirectory"
+Command line defined: "SHORTCUT_NAME=Transparent Streaming Chat"
+Command line defined: "UNINSTALL_DISPLAY_NAME=Transparent Streaming Chat 0.4.3"
+Command line defined: "MUI_WELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "MUI_UNWELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "ESTIMATED_SIZE=275624"
+Command line defined: "COMPRESS=auto"
+Command line defined: "BUILD_UNINSTALLER"
+Command line defined: "UNINSTALLER_OUT_FILE=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\__uninstaller-nsis-transparent-streaming-chat-overlay-master.exe"
+Processing config: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\nsisconf.nsh
+Processing script file: "<stdin>" (UTF8)
+
+Processed 1 file, 10 command line commands, writing output (x86-unicode):
+
+Output: "D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe"
+Install: 0 pages (0 bytes), 1 section (16408 bytes), 31 instructions (868 bytes), 2933 strings (24396 bytes), 26 language tables (4316 bytes).
+Uninstall: 4 pages (320 bytes), 1 section (16408 bytes), 1797 instructions (50316 bytes), 8516 strings (111132 bytes), 26 language tables (8684 bytes).
+
+Using zlib compression.
+
+EXE header size:               94208 / 39424 bytes
+Install code:                   9840 / 46388 bytes
+Install data:                      0 / 8 bytes
+Uninstall code+data:          161573 / 162571 bytes
+CRC (0x86DEF96A):                  4 / 4 bytes
+
+Total size:                   265625 / 248395 bytes (106.9%)
+  • exited          command=makensis.exe code=0 pid=2044
+  • executing       file=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe args= env={
+  "__COMPAT_LAYER": "RunAsInvoker"
+}
+  • executed        file=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe
+  • signing with signtool.exe  path=dist\__uninstaller-nsis-transparent-streaming-chat-overlay-master.exe
+  • no signing info identified, signing is skipped  signHook=false cscInfo=null
+  • spawning        command=C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe -WX -INPUTCHARSET UTF8 -DAPP_ID=io.tsco.transparentstreamingchat -DAPP_GUID=5bdd6077-55d4-5cf8-9b2f-e3c45061e058 -DUNINSTALL_APP_KEY=5bdd6077-55d4-5cf8-9b2f-e3c45061e058 -DPRODUCT_NAME=Transparent Streaming Chat -DPRODUCT_FILENAME=Transparent Streaming Chat -DAPP_FILENAME=Transparent Streaming Chat -DAPP_DESCRIPTION=Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window. -DVERSION=0.4.3 -DPROJECT_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master -DBUILD_RESOURCES_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build -DAPP_PACKAGE_NAME=transparent-streaming-chat-overlay-master -DMUI_ICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico -DMUI_UNICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico -DAPP_64=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z -DAPP_64_NAME=transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z -DAPP_64_HASH=AF9D34EA601EDA47F98BB4C539CE52727FC9073FCBC5B55B482E2D402DB2ADB77736FECAA96E03A0BC3E347C2B81FC4F74AA9DF910770D3A0597DAAD622BEB32 -DAPP_64_UNPACKED_SIZE=275624 -DCOMPANY_NAME=anonymous -DAPP_INSTALLER_STORE_FILE=transparent-streaming-chat-overlay-master-updater\installer.exe -DCOMPRESSION_METHOD=7z -DMULTIUSER_INSTALLMODE_ALLOW_ELEVATION -DINSTALL_MODE_PER_ALL_USERS_REQUIRED -DallowToChangeInstallationDirectory -DSHORTCUT_NAME=Transparent Streaming Chat -DUNINSTALL_DISPLAY_NAME=Transparent Streaming Chat 0.4.3 -DMUI_WELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp -DMUI_UNWELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp -DESTIMATED_SIZE=275624 -DCOMPRESS=auto -DUNINSTALLER_OUT_FILE=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\__uninstaller-nsis-transparent-streaming-chat-overlay-master.exe -XOutFile "D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe" -XVIProductVersion 0.4.3.0 -XVIAddVersionKey /LANG=1033 ProductName "Transparent Streaming Chat" -XVIAddVersionKey /LANG=1033 ProductVersion "0.4.3" -XVIAddVersionKey /LANG=1033 LegalCopyright "Copyright © 2026 anonymous" -XVIAddVersionKey /LANG=1033 FileDescription "Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window." -XVIAddVersionKey /LANG=1033 FileVersion "0.4.3" -XVIAddVersionKey /LANG=1033 CompanyName "anonymous" -XUnicode true -XSetCompressor zlib - cwd=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-lib\templates\nsis
+Command line defined: "APP_ID=io.tsco.transparentstreamingchat"
+Command line defined: "APP_GUID=5bdd6077-55d4-5cf8-9b2f-e3c45061e058"
+Command line defined: "UNINSTALL_APP_KEY=5bdd6077-55d4-5cf8-9b2f-e3c45061e058"
+Command line defined: "PRODUCT_NAME=Transparent Streaming Chat"
+Command line defined: "PRODUCT_FILENAME=Transparent Streaming Chat"
+Command line defined: "APP_FILENAME=Transparent Streaming Chat"
+Command line defined: "APP_DESCRIPTION=Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window."
+Command line defined: "VERSION=0.4.3"
+Command line defined: "PROJECT_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master"
+Command line defined: "BUILD_RESOURCES_DIR=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\build"
+Command line defined: "APP_PACKAGE_NAME=transparent-streaming-chat-overlay-master"
+Command line defined: "MUI_ICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico"
+Command line defined: "MUI_UNICON=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\.icon-ico\icon.ico"
+Command line defined: "APP_64=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z"
+Command line defined: "APP_64_NAME=transparent-streaming-chat-overlay-master-0.4.3-x64.nsis.7z"
+Command line defined: "APP_64_HASH=AF9D34EA601EDA47F98BB4C539CE52727FC9073FCBC5B55B482E2D402DB2ADB77736FECAA96E03A0BC3E347C2B81FC4F74AA9DF910770D3A0597DAAD622BEB32"
+Command line defined: "APP_64_UNPACKED_SIZE=275624"
+Command line defined: "COMPANY_NAME=anonymous"
+Command line defined: "APP_INSTALLER_STORE_FILE=transparent-streaming-chat-overlay-master-updater\installer.exe"
+Command line defined: "COMPRESSION_METHOD=7z"
+Command line defined: "MULTIUSER_INSTALLMODE_ALLOW_ELEVATION"
+Command line defined: "INSTALL_MODE_PER_ALL_USERS_REQUIRED"
+Command line defined: "allowToChangeInstallationDirectory"
+Command line defined: "SHORTCUT_NAME=Transparent Streaming Chat"
+Command line defined: "UNINSTALL_DISPLAY_NAME=Transparent Streaming Chat 0.4.3"
+Command line defined: "MUI_WELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "MUI_UNWELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "ESTIMATED_SIZE=275624"
+Command line defined: "COMPRESS=auto"
+Command line defined: "UNINSTALLER_OUT_FILE=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\__uninstaller-nsis-transparent-streaming-chat-overlay-master.exe"
+Processing config: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\nsisconf.nsh
+Processing script file: "<stdin>" (UTF8)
+
+Processed 1 file, 10 command line commands, writing output (x86-unicode):
+
+Output: "D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe"
+Install: 4 pages (256 bytes), 1 section (16408 bytes), 2002 instructions (56056 bytes), 10230 strings (124798 bytes), 26 language tables (9308 bytes).
+
+Using zlib compression.
+
+EXE header size:               96256 / 39424 bytes
+Install code:                  47254 / 207290 bytes
+Install data:               82303639 / 82747742 bytes
+CRC (0xFACED463):                  4 / 4 bytes
+
+Total size:                 82447153 / 82994460 bytes (99.3%)
+  • exited          command=makensis.exe code=0 pid=1672
+  • signing with signtool.exe  path=dist\Transparent Streaming Chat Setup 0.4.3.exe
+  • no signing info identified, signing is skipped  signHook=false cscInfo=null
+  • building block map  blockMapFile=dist\Transparent Streaming Chat Setup 0.4.3.exe.blockmap
+  • spawning        command=D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\node_modules\app-builder-bin\win\x64\app-builder.exe blockmap --input D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe --output D:\a\Transparent-Streaming-Chat-Overlay-Master\Transparent-Streaming-Chat-Overlay-Master\dist\Transparent Streaming Chat Setup 0.4.3.exe.blockmap
+  • exited          command=app-builder.exe code=0 pid=9024 out={"size":82447153,"sha512":"H67Hno8UVj24+N4H8cdKzrltg9+rVnJWLCkJbiI0aAO2Nu30qt6cK5RDaN08HcC5MxwmxTP+l4iA7rMklwou4Q=="}
+  • detect github as publish provider
+  • calling getInfo  reason=owner or project is not specified explicitly provider=github owner=undefined project=undefined
+  • detect github as publish provider
+  • calling getInfo  reason=owner or project is not specified explicitly provider=github owner=undefined project=undefined
