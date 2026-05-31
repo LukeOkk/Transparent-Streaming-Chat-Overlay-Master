@@ -1,6 +1,6 @@
 {
   "name": "transparent-streaming-chat-overlay-master",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": false,
   "description": "Cross-platform transparent chat overlay for live streaming. Loads the official chat popout for Twitch, Kick, YouTube Live, or any custom URL inside a borderless, transparent, always-on-top Electron window.",
   "main": "app/main.js",
