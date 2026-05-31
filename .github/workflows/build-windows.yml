@@ -2,6 +2,8 @@ name: Build Windows installer
 
 on:
   push:
+    branches:
+      - main      # temporary: build on every push to main while debugging CI
     tags:
       - 'v*'
   workflow_dispatch:
@@ -20,24 +22,34 @@ jobs:
         run: npm install
 
       - name: Build NSIS installer
+        shell: pwsh
         env:
-          # Lets electron-builder download its packaging binaries (nsis,
-          # winCodeSign) from GitHub with an authenticated, higher rate limit —
-          # anonymous downloads are the most common cause of a deterministic
-          # failure on a clean Windows runner.
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # No code-signing certificate in CI; don't let electron-builder try.
           CSC_IDENTITY_AUTO_DISCOVERY: false
-          # Verbose electron-builder output so failures are diagnosable.
           DEBUG: electron-builder
-        run: npm run dist:win
+        run: |
+          # Run electron-builder, capturing ALL output to a file (and the
+          # console). --publish never stops it from trying to push a GitHub
+          # release just because GH_TOKEN + a tag are present.
+          npx electron-builder --win nsis --publish never *> build-output.log
+          $code = $LASTEXITCODE
+          Get-Content build-output.log
+          if ($code -ne 0) {
+            # Surface the tail of the real error as ::error:: annotations,
+            # which are readable via the public check-runs annotations API.
+            Get-Content build-output.log -Tail 30 | ForEach-Object {
+              $line = ($_ -replace '::', ' : ')
+              if ($line.Trim().Length -gt 0) { Write-Output "::error::$line" }
+            }
+            exit $code
+          }
 
-      - name: Upload electron-builder debug log (always)
+      - name: Upload electron-builder output log (always)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: builder-debug-log
-          path: dist/builder-debug.yml
+          name: build-output-log
+          path: build-output.log
           if-no-files-found: ignore
 
       - name: Upload installer artifact
