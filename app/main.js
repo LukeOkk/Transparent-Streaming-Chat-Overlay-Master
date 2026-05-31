@@ -1,9 +1,10 @@
-const { app, BrowserWindow, ipcMain, Menu, shell, protocol, net } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, Tray, nativeImage, shell, protocol, net } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
 const SOUNDS_DIR = path.join(__dirname, 'sounds');
+const APP_ICON = path.join(__dirname, 'icon.png');
 
 const DEFAULT_CONFIG = {
   platform: null,
@@ -100,6 +101,7 @@ function registerProtocol() {
 let overlayWindow  = null;
 let settingsWindow = null;
 let opacityCssKey  = null;
+let tray           = null;
 
 function buildOpacityCss(percent) {
   const alpha = Math.max(0, Math.min(100, percent)) / 100;
@@ -194,6 +196,7 @@ function createOverlayWindow(cfg) {
   }
 
   const win = new BrowserWindow({
+    icon: APP_ICON,
     width: 420,
     height: 720,
     x: 80,
@@ -236,6 +239,7 @@ function createOverlayWindow(cfg) {
 
 function createSetupWindow() {
   const win = new BrowserWindow({
+    icon: APP_ICON,
     width: 480,
     height: 470,
     frame: true,
@@ -260,6 +264,7 @@ function createSettingsWindow() {
     return settingsWindow;
   }
   settingsWindow = new BrowserWindow({
+    icon: APP_ICON,
     width: 540,
     height: 720,
     frame: true,
@@ -279,21 +284,48 @@ function createSettingsWindow() {
   return settingsWindow;
 }
 
+// ── Shared menu actions (used by both the macOS app menu and the tray) ──────
+function openAbout() {
+  shell.openExternal('https://github.com/LukeOkk/Transparent-Streaming-Chat-Overlay-Master');
+}
+
+function openSettings() {
+  createSettingsWindow();
+}
+
+function reloadOverlay() {
+  if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.webContents.reload();
+}
+
+function changeChannel() {
+  writeConfig(Object.assign({}, DEFAULT_CONFIG));
+  app.relaunch();
+  app.exit(0);
+}
+
+function toggleDevTools() {
+  if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.webContents.toggleDevTools();
+}
+
+function focusOverlay() {
+  if (overlayWindow && !overlayWindow.isDestroyed()) {
+    if (overlayWindow.isMinimized()) overlayWindow.restore();
+    overlayWindow.show();
+    overlayWindow.focus();
+  }
+}
+
 function buildMenu() {
   const template = [
     {
       label: 'Transparent Streaming Chat',
       submenu: [
-        { label: 'About', click: () => shell.openExternal('https://github.com/LukeOkk/Transparent-Streaming-Chat-Overlay-Master') },
+        { label: 'About', click: openAbout },
         { type: 'separator' },
-        { label: 'Settings…', click: () => createSettingsWindow() },
-        { label: 'Reload Overlay', click: () => overlayWindow && overlayWindow.webContents.reload() },
-        { label: 'Change Channel / Platform…', click: () => {
-            writeConfig(Object.assign({}, DEFAULT_CONFIG));
-            app.relaunch();
-            app.exit(0);
-        } },
-        { label: 'DevTools', click: () => overlayWindow && overlayWindow.webContents.toggleDevTools() },
+        { label: 'Settings…', click: openSettings },
+        { label: 'Reload Overlay', click: reloadOverlay },
+        { label: 'Change Channel / Platform…', click: changeChannel },
+        { label: 'DevTools', click: toggleDevTools },
         { type: 'separator' },
         { role: 'quit', label: 'Quit' }
       ]
@@ -315,6 +347,36 @@ function buildMenu() {
     }
   ];
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+}
+
+// ── System tray ────────────────────────────────────────────────────────────
+// On Windows/Linux the overlay is a frameless window, so the application menu
+// set above is not reachable from it. A tray icon exposes the same actions so
+// the overlay stays usable. macOS keeps the global menu bar and skips the tray.
+function trayImage() {
+  const img = nativeImage.createFromPath(APP_ICON);
+  if (img.isEmpty()) return img;
+  return img.resize({ width: 16, height: 16 });
+}
+
+function createTray() {
+  if (tray) return tray;
+  tray = new Tray(trayImage());
+  tray.setToolTip('Transparent Streaming Chat');
+  tray.setContextMenu(Menu.buildFromTemplate([
+    { label: 'Show / Focus Overlay', click: focusOverlay },
+    { type: 'separator' },
+    { label: 'Settings…', click: openSettings },
+    { label: 'Reload Overlay', click: reloadOverlay },
+    { label: 'Change Channel / Platform…', click: changeChannel },
+    { label: 'DevTools', click: toggleDevTools },
+    { type: 'separator' },
+    { label: 'About', click: openAbout },
+    { label: 'Quit', click: () => app.quit() }
+  ]));
+  // Left-click brings the overlay back to the foreground (handy on Windows).
+  tray.on('click', focusOverlay);
+  return tray;
 }
 
 // ── IPC handlers ──────────────────────────────────────────────────────────
@@ -372,6 +434,8 @@ ipcMain.handle('settings:test-sound', async (_e, file, volume) => {
 app.whenReady().then(() => {
   registerProtocol();
   buildMenu();
+  // macOS exposes the menu globally; elsewhere the frameless overlay needs the tray.
+  if (process.platform !== 'darwin') createTray();
   const cfg = readConfig();
   if (!cfg.channel) {
     overlayWindow = createSetupWindow();
@@ -388,4 +452,8 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
+});
+
+app.on('before-quit', () => {
+  if (tray) { tray.destroy(); tray = null; }
 });

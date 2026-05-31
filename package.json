@@ -13,6 +13,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "dist:mac": "electron-builder --mac dmg",
+    "dist:win": "electron-builder --win nsis",
     "postinstall": "electron-builder install-app-deps"
   },
   "devDependencies": {
@@ -61,7 +62,16 @@
     "win": {
       "target": [
         "nsis"
-      ]
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Transparent Streaming Chat"
     }
   },
   "pnpm": {
