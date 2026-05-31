@@ -88,8 +88,8 @@ Output lands in `dist/`. Build each installer on its matching OS (build the Wind
 | Click-through                               | ✅            | ✅           |
 | Global hotkeys                              | ✅ (Win32)    | ✅ (Electron `globalShortcut`) |
 | Twitch chat                                 | ✅            | ✅ (official popout + CSS inject) |
-| Kick chat                                   | ❌            | ✅ (official popout + CSS inject) |
-| YouTube Live chat                           | ❌            | ✅ (live_chat?v=ID) |
+| Kick chat                                   | ✅            | ✅ (official popout + CSS inject) |
+| YouTube Live chat                           | ✅            | ✅ (live_chat?v=ID) |
 | Custom URL (KapChat, jChat, any iframe)     | ✅ (CustomProvider) | ✅ |
 | Background opacity toggle                   | ✅            | ✅ (slider in Settings) |
 | BTTV / FFZ / 7TV emotes                     | ✅ (NativeChat v2) | ✅ (Twitch only — global + channel emotes injected) |
