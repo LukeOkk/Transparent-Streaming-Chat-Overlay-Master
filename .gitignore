@@ -2,7 +2,9 @@ node_modules/
 dist/
 out/
 .DS_Store
-*.log
 .idea/
 .vscode/
 .cache/
+.claude/
+*.log
+._*
